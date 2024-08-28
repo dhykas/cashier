@@ -7,6 +7,18 @@ export interface ValidationReturn{
 }
 
 export async function emailUnique(email: string){
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    const isValidEmail = re.test(String(email).toLowerCase());
+
+    if(!isValidEmail){
+        return {
+            data: email,
+            error: true,
+            message: "email format is not valid"
+        }
+    }
+
     const prisma = new PrismaClient()
 
     const emailUniq = await prisma.user.findFirst({

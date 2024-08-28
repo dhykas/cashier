@@ -1,6 +1,7 @@
 import { emailUnique, validation, ValidationReturn,  } from "@/utils/validation";
 import { PrismaClient } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
+import bcrypt from "bcrypt";
 
 export async function POST(req: NextRequest){
     const prisma = new PrismaClient()
@@ -61,7 +62,7 @@ export async function POST(req: NextRequest){
     const newUser = await prisma.user.create({
         data: {
             email: objData.email,
-            password: objData.password,
+            password: bcrypt.hashSync(objData.password, 10),
             username: objData.username,
         }
     })
