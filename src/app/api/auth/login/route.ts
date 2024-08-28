@@ -49,10 +49,14 @@ export async function POST(req: NextRequest){
         console.log(isPass)
 
     if(email.error){
-        return NextResponse.json(email)
+        return NextResponse.json(email, {
+            status: 400
+        })
     }
     if(password.error){
-        return NextResponse.json(password)
+        return NextResponse.json(password, {
+            status: 400
+        })
     }
 
     const token = jwt.sign({ user }, secret_key, {
