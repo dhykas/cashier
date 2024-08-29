@@ -3,7 +3,7 @@ import { PrismaClient } from "@prisma/client"
 export interface ValidationReturn{
     error: boolean,
     message: string,
-    data: string
+    data: string | number
 }
 
 export async function emailUnique(email: string){
@@ -42,49 +42,77 @@ export async function emailUnique(email: string){
     }
 }
 
-export function validation({
+function validateLength({
     name,
+    data,
     minLength,
     maxLength,
+}: {
+    name: string;
+    data: string;
+    minLength?: number;
+    maxLength?: number;
+}): ValidationReturn | null {
+    if (minLength && data.length < minLength) {
+        return {
+            error: true,
+            message: `${name} Should Be Longer Than ${minLength} characters`,
+            data,
+        };
+    }
+
+    if (maxLength && data.length > maxLength) {
+        return {
+            error: true,
+            message: `${name} Should Be Less Than ${maxLength} characters`,
+            data,
+        };
+    }
+
+    return null;
+}
+
+export function validation({
+    name,
     data,
     required,
-}:{
-    name: string,
-    data:string,
-    required?: boolean,
-    minLength?: number,
-    maxLength?: number,
-}) : ValidationReturn
-{
-    if(required && !data){
+    minLength,
+    maxLength,
+}: {
+    name: string;
+    data: string | number;
+    required?: boolean;
+    minLength?: number;
+    maxLength?: number;
+}): ValidationReturn {
+    // Handle 'required' validation
+    if (required && (data === '' || data === undefined || data === null)) {
         return {
             error: true,
-            message: name+" Is Required",
-            data
-        }
-
+            message: `${name} Is Required`,
+            data,
+        };
     }
 
-    if(minLength && data.length < minLength){
-        return {
-            error: true,
-            message: name+" Should Be Longer Than "+minLength,
-            data
-        }
+    // Convert number data to string for uniform validation
+    const dataString = typeof data === 'number' ? data.toString() : data;
+
+    // Perform length validation for string/number
+    const lengthValidation = validateLength({
+        name,
+        data: dataString,
+        minLength,
+        maxLength,
+    });
+
+    if (lengthValidation) {
+        return lengthValidation;
     }
 
-    if(maxLength && data.length > maxLength){
-        return {
-            error: true,
-            message: name+" Should Be Less Than "+maxLength,
-            data
-        }
-    }
-
+    // Return valid response if all checks pass
     return {
         error: false,
-        message: name+" is Valid",
-        data
-    }
-
-};
+        message: `${name} is Valid`,
+        data,
+    };
+}

@@ -33,7 +33,7 @@ export async function PUT(req: NextRequest, { params } : { params: { id: string 
     const editedCategory = await prisma.productCategory.update({
         where: {
             id: parseInt(id),
-            UserId: user.id
+            userId: user.id
         },
         data:{
             name: name.data
@@ -56,7 +56,7 @@ export async function DELETE(req: NextRequest, { params } : { params: { id: stri
     const deletedCategory = await prisma.productCategory.delete({
         where: {
             id: parseInt(id),
-            UserId: user.id
+            userId: user.id
         },
     });
 

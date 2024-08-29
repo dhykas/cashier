@@ -46,7 +46,6 @@ export async function POST(req: NextRequest){
                 status: 400
             })
         }
-        console.log(isPass)
 
     if(email.error){
         return NextResponse.json(email, {
@@ -62,8 +61,6 @@ export async function POST(req: NextRequest){
     const token = jwt.sign({ user }, secret_key, {
         expiresIn: '7h'
     })
-    
-    console.log(token)
 
     return NextResponse.json({
         error: false,

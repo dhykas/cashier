@@ -12,7 +12,7 @@ export async function GET(req: NextRequest){
 
     const allCategory = await prisma.productCategory.findMany({
         where: {
-            UserId: user.id
+            userId: user.id
         }
     });
 
@@ -50,8 +50,8 @@ export async function POST(req: NextRequest){
 
     const newCategory = await prisma.productCategory.create({
         data: {
-            name: name.data,
-            UserId: user.id
+            name: name.data as string,
+            userId: user.id
         }
     });
 
