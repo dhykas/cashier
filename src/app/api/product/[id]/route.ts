@@ -86,7 +86,6 @@ export async function PUT(req: NextRequest, { params } : { params: { id: string 
             userId: user.id
         }
     });
-
     
     return NextResponse.json({
         error: false,
@@ -94,7 +93,6 @@ export async function PUT(req: NextRequest, { params } : { params: { id: string 
         editedProduct
     })
 }
-
 
 export async function DELETE(req: NextRequest, { params } : { params: { id: string } }){
     const { id } = params
