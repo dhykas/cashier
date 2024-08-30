@@ -5,7 +5,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 const prisma = new PrismaClient();
 
-export async function PUT(req: NextRequest, { params } : { params: { id: string } }){
+export async function PUT(req: NextRequest, { params } : { params: { id: number } }){
     const { id } = params
     const formData = await req.formData();
     
@@ -32,11 +32,11 @@ export async function PUT(req: NextRequest, { params } : { params: { id: string 
 
     const editedCategory = await prisma.productCategory.update({
         where: {
-            id: parseInt(id),
+            id: id,
             userId: user.id
         },
         data:{
-            name: name.data
+            name: name.data as string
         }
     });
 
@@ -55,7 +55,7 @@ export async function DELETE(req: NextRequest, { params } : { params: { id: stri
 
     const deletedCategory = await prisma.productCategory.delete({
         where: {
-            id: parseInt(id),
+            id: parseInt(id) as number,
             userId: user.id
         },
     });
@@ -64,5 +64,5 @@ export async function DELETE(req: NextRequest, { params } : { params: { id: stri
         error: false,
         message: "successfuly deleted category",
         deletedCategory
-    })
+    });
 }

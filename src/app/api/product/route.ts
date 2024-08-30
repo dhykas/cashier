@@ -7,7 +7,7 @@ const prisma = new PrismaClient();
 
 export async function GET(req: NextRequest){
     const token = req.headers.get('authorization');
-    const user = getUser(token!)
+    const user = getUser(token!);
 
     const allProd = await prisma.product.findMany({
         where: {
@@ -42,8 +42,7 @@ export async function POST(req: NextRequest){
         data: objData.name,
         required: true
     })
-
-    console.log(name)
+    
     if(name.error){
         console.log('lah ko eror')
         return NextResponse.json(name, {
@@ -90,9 +89,9 @@ export async function POST(req: NextRequest){
     const newProduct = await prisma.product.create({
         data: {
             name: name.data as string,
-            price: price.data as number,
-            stock: stock.data as number,
-            categoryId: categoryId.data as number,
+            price: parseInt(price.data as string),
+            stock: parseInt(stock.data as string),
+            categoryId: parseInt(categoryId.data as string),
             userId: user.id
         }
     });
@@ -102,4 +101,24 @@ export async function POST(req: NextRequest){
         message: "successfully add new product",
         newProduct
     })
+}
+
+export async function DELETE(req: NextRequest, { params } : { params: { id: number } }){
+    const { id } = params
+    
+    const token = req.headers.get('authorization');
+    const user = getUser(token!)
+
+    const deletedProduct = await prisma.product.delete({
+        where: {
+            id: id,
+            userId: user.id
+        },
+    });
+
+    return NextResponse.json({
+        error: false,
+        message: "successfuly deleted category",
+        deletedProduct
+    });
 }
