@@ -16,12 +16,14 @@ export async function POST(req: NextRequest){
 
     const objData:objdata = Object.fromEntries(formData) as unknown as objdata;
 
+    console.log(objData)
+
     const email: ValidationReturn = validation({
         data: objData.email,
         name: "email",
         required: true,
         minLength: 13
-    })
+    });
     
     const password: ValidationReturn = validation({
         data: objData.password,
@@ -30,23 +32,7 @@ export async function POST(req: NextRequest){
         minLength: 8,
         maxLength: 28
     });
-
-    const user = await prisma.user.findFirst({
-        where: {
-            email: objData.email
-        }
-    })
-        const isPass = await bcrypt.compare(objData.password, user!.password)
-        if(!isPass){
-            return NextResponse.json({
-                data: password.data,
-                error: true,
-                message: "invalid password"
-            }, {
-                status: 400
-            })
-        }
-
+    
     if(email.error){
         return NextResponse.json(email, {
             status: 400
@@ -57,6 +43,23 @@ export async function POST(req: NextRequest){
             status: 400
         })
     }
+
+    const user = await prisma.user.findFirst({
+        where: {
+            email: objData.email
+        }
+    });
+    
+        const isPass = await bcrypt.compare(objData.password, user!.password)
+        if(!isPass){
+            return NextResponse.json({
+                data: password.data,
+                error: true,
+                message: "invalid password"
+            }, {
+                status: 400
+            })
+        }
 
     const token = jwt.sign({ user }, secret_key, {
         expiresIn: '7h'

@@ -5,3 +5,9 @@ export interface JwtDecoded{
     iat: number,
     exp: number
 }
+
+export interface ResData{
+    error: boolean,
+    message: string,
+    token: string
+}
