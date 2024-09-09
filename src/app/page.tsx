@@ -2,7 +2,7 @@ import Drawer from "@/components/drawer";
 
 function CategoryBtnList(){
   return(
-    <section className="mt-2 flex flex-row gap-2 overflow-x-auto scrollbar-hide">
+    <section className="mt-2 flex flex-row gap-2 overflow-x-auto">
       <button className="btn px-10 bg-white">button</button>
       <button className="btn px-10 bg-primary text-white">button</button>
       <button className="btn px-10 bg-white">button</button>
@@ -17,7 +17,7 @@ function CategoryBtnList(){
   )
 }
 
-function CategorySec(){
+function ProductSec(){
   return(
     <section className="grid grid-cols-4 gap-4 mt-4">
       
@@ -60,6 +60,88 @@ function CategorySec(){
   )
 }
 
+function ProdCart(){
+  return(
+    <section>
+      
+      <div className="flex gap-2 mt-4">
+        <aside className="w-20 h-20 bg-gray-300 rounded flex-shrink-0"></aside>
+        <section>
+          <p>Lorem ipsum dolor sit amet consectetur </p>
+          <div className="flex justify-between mr-2">
+            <p className="text-primary">Rp 10.000</p>
+            <p className="flex gap-6">
+              <span className="bg-primary px-2 text-white rounded">-</span>
+              <span>1</span>
+              <span className="bg-primary px-2 text-white rounded">+</span>
+            </p>
+          </div>
+        </section>
+      </div>
+      
+      <div className="flex gap-2 mt-4">
+        <aside className="w-20 h-20 bg-gray-300 rounded flex-shrink-0"></aside>
+        <section>
+          <p>Lorem ipsum dolor sit amet consectetur </p>
+          <div className="flex justify-between mr-2">
+            <p className="text-primary">Rp 10.000</p>
+            <p className="flex gap-6">
+              <button className="cursor-pointer bg-primary px-2 text-white rounded">-</button>
+              <span>1</span>
+              <button className="cursor-pointer bg-primary px-2 text-white rounded">+</button>
+            </p>
+          </div>
+        </section>
+      </div>
+      
+      <div className="flex gap-2 mt-4">
+        <aside className="w-20 h-20 bg-gray-300 rounded flex-shrink-0"></aside>
+        <section>
+          <p>Lorem ipsum dolor sit amet consectetur </p>
+          <div className="flex justify-between mr-2">
+            <p className="text-primary">Rp 10.000</p>
+            <p className="flex gap-6">
+              <span className="bg-primary px-2 text-white rounded">-</span>
+              <span>1</span>
+              <span className="bg-primary px-2 text-white rounded">+</span>
+            </p>
+          </div>
+        </section>
+      </div>
+      
+      <div className="flex gap-2 mt-4">
+        <aside className="w-20 h-20 bg-gray-300 rounded flex-shrink-0"></aside>
+        <section>
+          <p>Lorem ipsum dolor sit amet consectetur </p>
+          <div className="flex justify-between mr-2">
+            <p className="text-primary">Rp 10.000</p>
+            <p className="flex gap-6">
+              <span className="bg-primary px-2 text-white rounded">-</span>
+              <span>1</span>
+              <span className="bg-primary px-2 text-white rounded">+</span>
+            </p>
+          </div>
+        </section>
+      </div>
+
+      <div className="flex flex-col rounded p-4 mt-12 w-full bg-gray-200">
+        <div className="flex flex-1 justify-between">
+          <p>Total Items : </p>
+          <p className="font-bold">13pcs</p>
+        </div>
+        <div className="flex flex-1 justify-between">
+          <p>Total Price : </p>
+          <p className="font-bold">Rp 130.000</p>
+        </div>
+
+        <div className="flex-1">
+          <button className="mt-4 w-full rounded  py-2 bg-primary text-white">Place Order</button>
+        </div>
+      </div>
+    </section>
+  )
+}
+
 export default function Home() {
   return (
     <section className="w-full min-h-screen flex bg-gray-100">
@@ -83,12 +165,14 @@ export default function Home() {
         </div>
         
         <CategoryBtnList />
-        <CategorySec />
+        <ProductSec />
       </div>
 
-      <div className="w-1/4 bg-white">
-
+      <div className="p-4 pt-6 w-1/4 bg-white h-screen sticky top-0">
+        <h1 className="text-2xl font-bold">Current Order</h1>
+        <ProdCart />
       </div>
+      
     </section>
   );
 }

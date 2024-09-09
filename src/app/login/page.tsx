@@ -46,7 +46,7 @@
         }, 3000);
 
       }else{
-        setCookie("user",data.token)
+        setCookie("token",data.token)
         setIsloading(false);
         router.push('/')
       }

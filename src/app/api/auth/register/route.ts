@@ -43,7 +43,7 @@ export async function POST(req: NextRequest){
         return NextResponse.json(email)
     }
 
-    const uniqEmail = await emailUnique(email.data)
+    const uniqEmail = await emailUnique(email.data as string)
 
     if(uniqEmail.error){
         return NextResponse.json(uniqEmail, {
