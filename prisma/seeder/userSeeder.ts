@@ -8,17 +8,16 @@ export default async function userSeeder(){
         where: {
             email: "admin@gmail.com"
         }
-    })
+    });
 
-    if (checkAdmin){
+    if (checkAdmin) {
         await prisma.user.delete({
             where: {
                 email: "admin@gmail.com"
             }
-        })
+        });
     }
-
-    console.log(checkAdmin)
+    
     const admin = await prisma.user.create({
         data: {
             email: "admin@gmail.com",
@@ -26,6 +25,4 @@ export default async function userSeeder(){
             username: "admin"
         }
     });
-
-    return admin
 }

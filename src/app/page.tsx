@@ -1,10 +1,14 @@
+'use client'
+
 import Drawer from "@/components/drawer";
+
+
 
 function CategoryBtnList(){
   return(
     <section className="mt-2 flex flex-row gap-2 overflow-x-auto">
+      <button className="btn px-10 bg-primary text-white">All</button>
       <button className="btn px-10 bg-white">button</button>
-      <button className="btn px-10 bg-primary text-white">button</button>
       <button className="btn px-10 bg-white">button</button>
       <button className="btn px-10 bg-white">button</button>
       <button className="btn px-10 bg-white">button</button>
@@ -71,9 +75,9 @@ function ProdCart(){
           <div className="flex justify-between mr-2">
             <p className="text-primary">Rp 10.000</p>
             <p className="flex gap-6">
-              <span className="bg-primary px-2 text-white rounded">-</span>
+              <button className="bg-primary px-2 text-white rounded">-</button>
               <span>1</span>
-              <span className="bg-primary px-2 text-white rounded">+</span>
+              <button className="bg-primary px-2 text-white rounded">+</button>
             </p>
           </div>
         </section>
@@ -86,9 +90,9 @@ function ProdCart(){
           <div className="flex justify-between mr-2">
             <p className="text-primary">Rp 10.000</p>
             <p className="flex gap-6">
-              <button className="cursor-pointer bg-primary px-2 text-white rounded">-</button>
+              <button className="bg-primary px-2 text-white rounded">-</button>
               <span>1</span>
-              <button className="cursor-pointer bg-primary px-2 text-white rounded">+</button>
+              <button className="bg-primary px-2 text-white rounded">+</button>
             </p>
           </div>
         </section>
@@ -101,9 +105,9 @@ function ProdCart(){
           <div className="flex justify-between mr-2">
             <p className="text-primary">Rp 10.000</p>
             <p className="flex gap-6">
-              <span className="bg-primary px-2 text-white rounded">-</span>
+              <button className="bg-primary px-2 text-white rounded">-</button>
               <span>1</span>
-              <span className="bg-primary px-2 text-white rounded">+</span>
+              <button className="bg-primary px-2 text-white rounded">+</button>
             </p>
           </div>
         </section>
@@ -116,9 +120,9 @@ function ProdCart(){
           <div className="flex justify-between mr-2">
             <p className="text-primary">Rp 10.000</p>
             <p className="flex gap-6">
-              <span className="bg-primary px-2 text-white rounded">-</span>
+              <button className="bg-primary px-2 text-white rounded">-</button>
               <span>1</span>
-              <span className="bg-primary px-2 text-white rounded">+</span>
+              <button className="bg-primary px-2 text-white rounded">+</button>
             </p>
           </div>
         </section>

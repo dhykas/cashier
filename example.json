@@ -1,0 +1,7 @@
+[{
+    "name": "category1",
+    "product": [{
+        "name": "product1",
+        "price": 10000
+    }]
+}]
